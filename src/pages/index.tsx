@@ -1,10 +1,11 @@
 import React from 'react';
-import styles from './index.less';
+import './index.less';
+import { Button, TabBar } from 'antd-mobile';
 
 export default () => {
   return (
-    <div>
-      <h1 className={styles.title}>Page index</h1>
+    <div className="home-container">
+      <Button>Start</Button>
     </div>
   );
-}
+};
