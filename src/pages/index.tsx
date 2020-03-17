@@ -5,7 +5,10 @@ import { Button, TabBar } from 'antd-mobile';
 export default () => {
   return (
     <div className="home-container">
-      <Button>Start</Button>
+      <div className="main-container">
+        <Button>Start</Button>
+      </div>
+      <div className="tab-bar-container">1</div>
     </div>
   );
 };
