@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default () => {
-  return <div>message</div>;
+  return <div>Message.</div>;
 };
