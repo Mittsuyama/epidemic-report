@@ -1,17 +1,36 @@
-import React, { useState } from 'react';
-import './bottombar.less';
-import { TabBar } from 'antd-mobile';
+import React, { useState, useEffect } from 'react';
+import '@/styles/bottombar.less';
+import { TabBar, NavBar, Icon } from 'antd-mobile';
 import { history } from 'umi';
 
 export default (props: any) => {
+  const tabBarMenu = useTabBarMenu();
+  const filterResult = tabBarMenu.filter(
+    item => item.name === getLastPath(props.location.pathname),
+  );
+  const navName = filterResult[0] ? filterResult[0].title : '';
+
   return (
     <div className="home-container">
+      <NavBar mode="light">{navName}</NavBar>
       <div className="main-container">
         <div>{props.children}</div>
       </div>
-      <div className="tab-bar-container">{tabBarRender(props.route.path)}</div>
+      <div className="tab-bar-container">
+        {tabBarRender(tabBarMenu, getLastPath(props.location.pathname))}
+      </div>
     </div>
   );
+};
+
+const useTabBarMenu = () => {
+  const [tabBarMenu, setTabBarMenu] = useState([
+    { name: 'home', title: '主页', icon: 'icon-home', badge: 0 },
+    { name: 'message', title: '消息', icon: 'icon-message', badge: 2 },
+    { name: 'me', title: '我的', icon: 'icon-user', badge: 0 },
+  ]);
+  useEffect(() => {}, []);
+  return tabBarMenu;
 };
 
 // get the last parameter from route path
@@ -21,22 +40,18 @@ const getLastPath = (path: string) => {
 };
 
 // render tab bar
-const tabBarRender = (route: string) => {
-  const [selectMenu, setSelectMenu] = useState(getLastPath(route));
-  const tabBarMenu = [
-    { name: 'home', title: '主页', icon: 'icon-yidiandiantubiao04' },
-    { name: 'message', title: '消息', icon: 'icon-luntan' },
-    { name: 'me', title: '我的', icon: 'icon-kehufuwu' },
-  ];
+const tabBarRender = (tabBarMenu: any, path: string) => {
+  const [selectMenu, setSelectMenu] = useState(path);
   const { Item } = TabBar;
   return (
     <TabBar unselectedTintColor="#333" tintColor="#66CCFF" barTintColor="white">
-      {tabBarMenu.map((item, index) => {
+      {tabBarMenu.map((item: any, index: number) => {
         return (
           <Item
             title={item.title}
             key={index}
             icon={<i className={`iconfont ${item.icon}`} />}
+            badge={item.badge ? item.badge : false}
             selectedIcon={
               <i
                 style={{ color: '#66CCFF' }}
