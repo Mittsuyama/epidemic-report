@@ -14,11 +14,13 @@ export default (props: any) => {
   );
 };
 
+// get the last parameter from route path
 const getLastPath = (path: string) => {
   const pathList = path.split('/');
   return pathList[pathList.length - 1];
 };
 
+// render tab bar
 const tabBarRender = (route: string) => {
   const [selectMenu, setSelectMenu] = useState(getLastPath(route));
   const tabBarMenu = [

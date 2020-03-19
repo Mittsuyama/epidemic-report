@@ -1,6 +1,8 @@
 import React from 'react';
 import './index.less';
+import { history } from 'umi';
 
 export default () => {
-  return <div>Index Page.</div>;
+  history.push('/home');
+  return <div>{''}</div>;
 };
