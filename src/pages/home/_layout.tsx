@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import '@/styles/bottombar.less';
-import { TabBar, NavBar, Icon } from 'antd-mobile';
+import { TabBar } from 'antd-mobile';
 import { history, connect } from 'umi';
 
 const layout = (props: any) => {
-  const { navigation, dispatch } = props;
+  const { dispatch } = props;
   const tabBarMenu = useTabBarMenu();
 
   return (
     <div className="home-container">
-      <NavBar mode="light">{navigation}</NavBar>
       <div className="main-container">
         <div>{props.children}</div>
       </div>
