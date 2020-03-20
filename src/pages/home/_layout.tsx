@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import '@/styles/bottombar.less';
 import { TabBar, NavBar, Icon } from 'antd-mobile';
-import { history } from 'umi';
+import { history, connect } from 'umi';
 
-export default (props: any) => {
+const layout = (props: any) => {
+  const { navigation, dispatch } = props;
   const tabBarMenu = useTabBarMenu();
-  const filterResult = tabBarMenu.filter(
-    item => item.name === getLastPath(props.location.pathname),
-  );
-  const navName = filterResult[0] ? filterResult[0].title : '';
 
   return (
     <div className="home-container">
-      <NavBar mode="light">{navName}</NavBar>
+      <NavBar mode="light">{navigation}</NavBar>
       <div className="main-container">
         <div>{props.children}</div>
       </div>
       <div className="tab-bar-container">
-        {tabBarRender(tabBarMenu, getLastPath(props.location.pathname))}
+        {tabBarRender(
+          dispatch,
+          tabBarMenu,
+          getLastPath(props.location.pathname),
+        )}
       </div>
     </div>
   );
@@ -40,7 +41,7 @@ const getLastPath = (path: string) => {
 };
 
 // render tab bar
-const tabBarRender = (tabBarMenu: any, path: string) => {
+const tabBarRender = (dispatch: any, tabBarMenu: any, path: string) => {
   const [selectMenu, setSelectMenu] = useState(path);
   const { Item } = TabBar;
   return (
@@ -64,6 +65,10 @@ const tabBarRender = (tabBarMenu: any, path: string) => {
                 `/home${item.name === 'home' ? '' : `/${item.name}`}`,
               );
               setSelectMenu(item.name);
+              dispatch({
+                type: 'navigation/update',
+                payload: item.title,
+              });
             }}
           />
         );
@@ -71,3 +76,8 @@ const tabBarRender = (tabBarMenu: any, path: string) => {
     </TabBar>
   );
 };
+
+// @ts-ignore
+export default connect(({ navigation }) => ({
+  navigation,
+}))(layout);
