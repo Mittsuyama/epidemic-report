@@ -4,8 +4,12 @@ import { TabBar } from 'antd-mobile';
 import { history, connect } from 'umi';
 
 const layout = (props: any) => {
-  const { dispatch } = props;
-  const tabBarMenu = useTabBarMenu();
+  const { dispatch, unread } = props;
+  const tabBarMenu = [
+    { name: 'home', title: '主页', icon: 'icon-home', badge: 0 },
+    { name: 'message', title: '消息', icon: 'icon-message', badge: unread },
+    { name: 'me', title: '我的', icon: 'icon-user', badge: 0 },
+  ];
 
   return (
     <div className="home-container">
@@ -21,16 +25,6 @@ const layout = (props: any) => {
       </div>
     </div>
   );
-};
-
-const useTabBarMenu = () => {
-  const [tabBarMenu, setTabBarMenu] = useState([
-    { name: 'home', title: '主页', icon: 'icon-home', badge: 0 },
-    { name: 'message', title: '消息', icon: 'icon-message', badge: 2 },
-    { name: 'me', title: '我的', icon: 'icon-user', badge: 0 },
-  ]);
-  useEffect(() => {}, []);
-  return tabBarMenu;
 };
 
 // get the last parameter from route path
@@ -77,6 +71,7 @@ const tabBarRender = (dispatch: any, tabBarMenu: any, path: string) => {
 };
 
 // @ts-ignore
-export default connect(({ navigation }) => ({
+export default connect(({ navigation, unread }) => ({
   navigation,
+  unread,
 }))(layout);

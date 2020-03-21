@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { List, WhiteSpace } from 'antd-mobile';
+import { queryMessageList } from '@/utils/api';
+import { connect } from 'umi';
 
-export default () => {
-  const unreadList: any = useUnreadList();
-  const readList: any = useReadList();
+const Message = (props: any) => {
+  const { dispatch } = props;
+  const [unreadList, readList]: any = useList(dispatch);
+
   return (
     <div className="message-container">
       {messageListRender('未读信息', unreadList)}
@@ -40,36 +43,27 @@ const messageListRender = (title: string, list: []) => {
   );
 };
 
-const useUnreadList = () => {
-  const [unreadList, setUnreadList] = useState([
-    {
-      title:
-        '哈工大 i 聘直播：聚英才 著神箭 —— 航天科工四院哈工大云端宣讲会通知',
-      time: '2020-03-19',
-    },
-    {
-      title: '转发中国铁路局哈尔滨集团有限公司哈尔滨站通告',
-      time: '2020-03-18',
-    },
-  ]);
-  return unreadList;
+const useList = (dispatch: Function) => {
+  const [unreadList, setUnreadList] = useState([]);
+  const [readList, setReadList] = useState([]);
+  useEffect(() => {
+    (async function() {
+      const result: any = await queryMessageList();
+      if (result.status === 200) {
+        const { data } = result;
+        setUnreadList(data.unreadList);
+        setReadList(data.readList);
+        dispatch({
+          type: 'unread/update',
+          payload: data.unreadList.length,
+        });
+      }
+    })();
+  }, []);
+  return [unreadList, readList];
 };
 
-const useReadList = () => {
-  const [readList, setReadList] = useState([
-    {
-      title: '关于收看"全国大学生同上一堂疫情防控思政大课"的通知',
-      time: '2020-03-08',
-    },
-    {
-      title:
-        '关于和黑龙江省连通、移动、电信运营商为我校学生提供优惠流量包的通知',
-      time: '2020-03-10',
-    },
-    {
-      title: '重要通知：25 日中午，你我都是华为云平台测试员！',
-      time: '2020-02-24',
-    },
-  ]);
-  return readList;
-};
+// @ts-ignore
+export default connect(({ unread }) => ({
+  unread,
+}))(Message);

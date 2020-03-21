@@ -37,7 +37,7 @@ const userPortraitRender = () => {
         multipleLine
         onClick={() => {}}
       >
-        User Name <Item.Brief>学号：1171000999</Item.Brief>
+        张三（经济与管理学院） <Item.Brief>学号：1171000999</Item.Brief>
       </Item>
     </List>
   );
