@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { List, WhiteSpace } from 'antd-mobile';
 import { queryMessageList } from '@/utils/api';
-import { connect } from 'umi';
+import { connect, history } from 'umi';
 
 const Message = (props: any) => {
   const { dispatch } = props;
@@ -24,10 +24,12 @@ const messageListRender = (title: string, list: []) => {
           list.map((item: any, index: number) => {
             return (
               <Item
-                key={index + item.time}
+                key={item.id}
                 arrow="horizontal"
                 multipleLine
-                onClick={() => {}}
+                onClick={() => {
+                  history.push(`/detail/message/${item.id}`);
+                }}
               >
                 {item.title}
                 <Item.Brief>{item.time}</Item.Brief>

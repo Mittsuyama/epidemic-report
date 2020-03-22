@@ -1,6 +1,10 @@
 export default {
   namespaces: 'navigation',
-  state: '主页',
+  state: {
+    title: '主页',
+    back: false,
+    last: '',
+  },
   reducers: {
     update(state, { payload: navigation }) {
       return navigation;

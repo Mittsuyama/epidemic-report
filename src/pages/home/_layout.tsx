@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '@/styles/bottombar.less';
+import '@/styles/tabbar.less';
 import { TabBar } from 'antd-mobile';
 import { history, connect } from 'umi';
 
@@ -60,7 +60,10 @@ const tabBarRender = (dispatch: any, tabBarMenu: any, path: string) => {
               setSelectMenu(item.name);
               dispatch({
                 type: 'navigation/update',
-                payload: item.title,
+                payload: {
+                  title: item.title,
+                  back: false,
+                },
               });
             }}
           />
