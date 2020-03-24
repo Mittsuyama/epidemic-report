@@ -23,11 +23,7 @@ const layout = (props: any) => {
             });
           }}
         >
-          <span
-            style={{ width: 290, overflow: 'hidden', textOverflow: 'ellipsis' }}
-          >
-            {navigation.title}
-          </span>
+          <span className="title-box">{navigation.title}</span>
         </NavBar>
       ) : (
         <NavBar mode="light">{navigation.title}</NavBar>

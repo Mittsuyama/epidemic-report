@@ -5,7 +5,6 @@ const apiRoot = '/';
 
 export default (method = 'GET', path = '', params = {}) => {
   const url = apiRoot + path;
-  console.log(url, params);
   return new Promise((resolve, _) => {
     let promise;
 
