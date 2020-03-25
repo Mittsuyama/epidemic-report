@@ -17,15 +17,17 @@ const Home = (props: any) => {
   ];
 
   return (
-    <div className="home-function-container">{gridRender(bookingGrid)}</div>
+    <div className="home-function-container">
+      {gridRender('预约服务', bookingGrid)}
+    </div>
   );
 };
 
-const handleClick = (data: any) => {
+const handleClick = (title: string, data: any) => {
   dispatch({
     type: 'navigation/update',
     payload: {
-      title: data.text,
+      title: `${title} - ${data.text}`,
       last: '主页',
       back: true,
     },
@@ -33,13 +35,13 @@ const handleClick = (data: any) => {
   history.push(`/booking/${data.link}`);
 };
 
-const gridRender = (data: any) => {
+const gridRender = (title: string, data: any) => {
   return (
     <div className="grid-box">
       <div className="sub-title">预约服务</div>
       <Grid
         data={data}
-        onClick={(dataItem: any) => handleClick(dataItem)}
+        onClick={(dataItem: any) => handleClick(title, dataItem)}
         renderItem={(dataItem: any) => (
           <div className="grid-item">
             <div className="info">
