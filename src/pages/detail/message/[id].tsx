@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { queryMessageDetail } from '@/utils/api';
-import '@/styles/message.less';
+import '@/styles/detail/message.less';
 import { connect } from 'umi';
 
 const MessageDetail = (props: any) => {

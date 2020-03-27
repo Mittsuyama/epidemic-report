@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '@/styles/tabbar.less';
+import '@/styles/all/tabbar.less';
 import { TabBar } from 'antd-mobile';
 import { history, connect } from 'umi';
 

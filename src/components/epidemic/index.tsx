@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, WhiteSpace } from 'antd-mobile';
-import '@/styles/epidemic.less';
+import './epidemic.less';
 
 export default () => {
   const info = [

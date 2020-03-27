@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavBar, Icon } from 'antd-mobile';
 import { connect, history } from 'umi';
-import '@/styles/navigation.less';
+import '@/styles/all/navigation.less';
 
 const layout = (props: any) => {
   const { navigation, dispatch } = props;

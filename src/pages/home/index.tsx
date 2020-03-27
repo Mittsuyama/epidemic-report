@@ -3,7 +3,7 @@ import { Grid, WhiteSpace } from 'antd-mobile';
 import { connect, history } from 'umi';
 import Epidemic from '@/components/epidemic';
 
-import '@/styles/home.less';
+import '@/styles/home/home.less';
 
 let dispatch: any = null;
 

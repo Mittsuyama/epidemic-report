@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, WhiteSpace } from 'antd-mobile';
 
-import '@/styles/me.less';
+import '@/styles/home/me.less';
 
 export default () => {
   const meList = [
@@ -25,21 +25,25 @@ export default () => {
 
 const userPortraitRender = () => {
   const { Item } = List;
+
   return (
-    <List>
-      <Item
-        thumb={
-          <div className="user-portrait-box">
-            <i className="iconfont icon-user" />
-          </div>
-        }
-        arrow="horizontal"
-        multipleLine
-        onClick={() => {}}
-      >
-        张三（经济与管理学院） <Item.Brief>学号：1171000999</Item.Brief>
-      </Item>
-    </List>
+    <div className="me-container">
+      <WhiteSpace size="lg" />
+      <List>
+        <Item
+          thumb={
+            <div className="user-portrait-box">
+              <i className="iconfont icon-user" />
+            </div>
+          }
+          arrow="horizontal"
+          multipleLine
+          onClick={() => {}}
+        >
+          张三（经济与管理学院） <Item.Brief>学号：1171000999</Item.Brief>
+        </Item>
+      </List>
+    </div>
   );
 };
 
@@ -47,7 +51,7 @@ const listRender = (list: any) => {
   const { Item } = List;
   return (
     <div>
-      <WhiteSpace size="xl" />
+      <WhiteSpace size="lg" />
       {list.map((item: any, index: number) => {
         return (
           <div key={index}>
