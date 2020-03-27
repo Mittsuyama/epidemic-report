@@ -38,17 +38,16 @@ const tabBarRender = (dispatch: any, tabBarMenu: any, path: string) => {
   const [selectMenu, setSelectMenu] = useState(path);
   const { Item } = TabBar;
   return (
-    <TabBar unselectedTintColor="#333" tintColor="#66CCFF" barTintColor="white">
+    <TabBar unselectedTintColor="#333" tintColor="#333" barTintColor="white">
       {tabBarMenu.map((item: any, index: number) => {
         return (
           <Item
             title={item.title}
             key={index}
-            icon={<i className={`iconfont ${item.icon}`} />}
-            badge={item.badge ? item.badge : false}
+            icon={<i className={`iconfont ${item.icon}-o`} />}
             selectedIcon={
               <i
-                style={{ color: '#66CCFF' }}
+                style={{ color: '#000' }}
                 className={`iconfont ${item.icon}`}
               />
             }

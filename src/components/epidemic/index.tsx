@@ -15,7 +15,7 @@ export default () => {
       <WhiteSpace size="lg" />
       <Card full>
         <Card.Header
-          title="疫情信息"
+          title={<span className="card-title">疫情信息</span>}
           extra={
             <span style={{ fontSize: 14 }}>{`截止：${'2020.3.27 19:49'}`}</span>
           }
@@ -24,7 +24,7 @@ export default () => {
           <div className="main-box">
             {info.map((item, index) => {
               return (
-                <div className="item">
+                <div key={index} className="item">
                   <div className="head">{item.value}</div>
                   <div className="main">{item.label}</div>
                   <div className="extra">{item.compare}</div>
