@@ -1,6 +1,7 @@
 import React from 'react';
-import { Grid } from 'antd-mobile';
+import { Grid, WhiteSpace } from 'antd-mobile';
 import { connect, history } from 'umi';
+import Epidemic from '@/components/epidemic';
 
 import '@/styles/home.less';
 
@@ -15,10 +16,21 @@ const Home = (props: any) => {
     { text: '快递包裹', icon: 'icon-kuaidibaoguo', link: 'express' },
     { text: '超市', icon: 'icon-Shoppingcartdelete', link: 'supermarket' },
   ];
+  const remoteBooking = [
+    { text: '后勤点餐', icon: 'icon-bicycle-share-', link: '' },
+    {
+      text: '超市配送',
+      icon: 'icon-valentine_-shoping-love-heart-bag',
+      link: '',
+    },
+    { text: '线上问诊', icon: 'icon-medical-personnel-doctor', link: '' },
+  ];
 
   return (
     <div className="home-function-container">
-      {gridRender('预约服务', bookingGrid)}
+      <Epidemic />
+      {gridRender('预约服务', bookingGrid, 'inner')}
+      {gridRender('远程服务', remoteBooking, 'outer')}
     </div>
   );
 };
@@ -35,13 +47,18 @@ const handleClick = (title: string, data: any) => {
   history.push(`/booking/${data.link}`);
 };
 
-const gridRender = (title: string, data: any) => {
+const jumpTo = (data: any) => {};
+
+const gridRender = (title: string, data: any, type: string) => {
   return (
     <div className="grid-box">
-      <div className="sub-title">预约服务</div>
+      <WhiteSpace size="lg" />
+      <div className="sub-title">{title}</div>
       <Grid
         data={data}
-        onClick={(dataItem: any) => handleClick(title, dataItem)}
+        onClick={(dataItem: any) =>
+          type === 'inner' ? handleClick(title, dataItem) : jumpTo(dataItem)
+        }
         renderItem={(dataItem: any) => (
           <div className="grid-item">
             <div className="info">

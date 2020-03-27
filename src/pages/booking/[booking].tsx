@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import LIST from '@/utils/booking';
 import { List, InputItem, DatePicker, Picker, WhiteSpace, Button } from 'antd-mobile';
 // @ts-ignore

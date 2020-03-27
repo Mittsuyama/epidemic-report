@@ -10,7 +10,7 @@ export default {
         { label: '正心楼', value: '正心楼' },
         { label: '诚意楼', value: '诚意楼' },
         { label: '明德楼', value: '明德楼' },
-        { label: '逸夫楼', value: '逸夫楼' },
+        { label: '致知楼', value: '致知楼' },
       ],
     },
     { type: 'input', name: 'classroom', title: '教室编号' },

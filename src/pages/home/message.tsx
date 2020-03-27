@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { List, WhiteSpace } from 'antd-mobile';
 import { queryMessageList } from '@/utils/api';
 import { connect, history } from 'umi';
+import '@/styles/home/message.less';
 
 const Message = (props: any) => {
   const { dispatch } = props;
@@ -19,7 +20,9 @@ const messageListRender = (title: string, list: []) => {
   const { Item } = List;
   return (
     <div>
-      <List renderHeader={title}>
+      <WhiteSpace size="lg" />
+      <div className="list-header">{title}</div>
+      <List>
         {list.length > 1 ? (
           list.map((item: any, index: number) => {
             return (
@@ -40,7 +43,6 @@ const messageListRender = (title: string, list: []) => {
           <Item>暂无信息</Item>
         )}
       </List>
-      <WhiteSpace />
     </div>
   );
 };
