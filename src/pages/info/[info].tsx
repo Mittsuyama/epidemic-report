@@ -1,12 +1,12 @@
 import React from 'react';
-import BOOKING from '@/utils/constant/booking';
+import INFO from '@/utils/constant/info';
 // @ts-ignore
 import Form from '@/components/form';
 
 export default (props: any) => {
   const { match } = props;
   // @ts-ignore
-  const formList = BOOKING[match.params.booking] || [];
+  const formList = INFO[match.params.info] || [];
 
   return (
     <div className="info-container">
