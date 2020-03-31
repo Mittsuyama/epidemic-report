@@ -19,6 +19,7 @@
     ]
   },
   "dependencies": {
+    "@antv/f2": "^3.6.3",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.0.7",
     "antd-mobile": "^2.3.1",

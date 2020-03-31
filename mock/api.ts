@@ -119,4 +119,33 @@ export default {
         '衷心感谢同学们的大力支持！',
     },
   },
+  'GET /api/booking/data': [
+    {
+      status: 200,
+      data: [
+        {
+          title: '教室',
+          data: [
+            { time: '7', value: '121' },
+            { time: '8', value: '134' },
+            { time: '9', value: '298' },
+            { time: '10', value: '508' },
+            { time: '11', value: '832' },
+            { time: '12', value: '734' },
+          ],
+        },
+        {
+          title: '食堂',
+          data: [
+            { time: '7', value: '713' },
+            { time: '8', value: '643' },
+            { time: '9', value: '304' },
+            { time: '10', value: '12' },
+            { time: '11', value: '390' },
+            { time: '12', value: '941' },
+          ],
+        },
+      ],
+    },
+  ],
 };
