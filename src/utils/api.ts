@@ -35,4 +35,5 @@ export const queryPersonalReport = (params: any) =>
 export const queryRoomReport = (params: any) =>
   ajax('POST', 'api/info/dorm', params);
 
+// booking data
 export const queryBookingData = () => ajax('GET', 'api/booking/data');

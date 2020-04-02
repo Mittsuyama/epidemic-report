@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { queryBookingData } from '@/utils/api';
 import { WhiteSpace } from 'antd-mobile';
+import _ from 'lodash';
+import './graph.less';
+
 const F2 = require('@antv/f2');
 
 export default (props: any) => {
-  const _ = printGraph();
+  useEffect(() => {
+    const _ = printGraph();
+  }, []);
 
   return (
     <div className="graph-container">
       <WhiteSpace />
-      <canvas id="booking-chart" width="100%" height="250" />
+      <canvas id="booking-chart" style={{ width: '100%', height: 250 }} />
     </div>
   );
 };
@@ -22,7 +27,24 @@ const printGraph = async () => {
       id: 'booking-chart',
       pixelRatio: window.devicePixelRatio,
     });
-    chart.source(chartDataReduce(data));
+    chart.source(chartDataReduce(data), {
+      value: {
+        tickCount: 5,
+        min: 0,
+      },
+    });
+    chart.tooltip({
+      custom: true,
+      onChange: (obj: any) => {
+        const legend = chart.get('legendController').legends.top[0];
+        console.log(legend);
+      },
+    });
+    chart
+      .line()
+      .position('date*value')
+      .color('type');
+    chart.render();
   }
 };
 
@@ -32,8 +54,8 @@ const chartDataReduce = (dataList: any) => {
     const { title } = data;
     data.data.forEach((item: any) => {
       result.push({
-        time: item.time,
-        value: item.value,
+        date: item.date,
+        value: item.value * 1,
         type: title,
       });
     });

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, WhiteSpace } from 'antd-mobile';
 import { connect, history } from 'umi';
 import Epidemic from '@/components/epidemic';
+import Graph from '@/components/graph';
 
 import '@/styles/home/home.less';
 
@@ -34,8 +35,9 @@ const Home = (props: any) => {
   return (
     <div className="home-function-container">
       <Epidemic />
-      {gridRender('信息中心', 'info', infoReport, 'inner')}
+      <Graph />
       {gridRender('预约服务', 'booking', bookingGrid, 'inner')}
+      {gridRender('信息中心', 'info', infoReport, 'inner')}
       {gridRender('远程服务', '', remoteBooking, 'outer')}
     </div>
   );
