@@ -35,7 +35,6 @@ const Home = (props: any) => {
   return (
     <div className="home-function-container">
       <Epidemic />
-      <Graph />
       {gridRender('预约服务', 'booking', bookingGrid, 'inner')}
       {gridRender('信息中心', 'info', infoReport, 'inner')}
       {gridRender('远程服务', '', remoteBooking, 'outer')}
@@ -62,6 +61,7 @@ const gridRender = (title: string, path: string, data: any, type: string) => {
     <div className="grid-box">
       <WhiteSpace size="lg" />
       <div className="sub-title">{title}</div>
+      {path === 'booking' ? <Graph /> : null}
       <Grid
         data={data}
         onClick={(dataItem: any) =>

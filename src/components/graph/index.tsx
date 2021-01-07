@@ -12,8 +12,7 @@ export default (props: any) => {
   }, []);
 
   return (
-    <div className="graph-container">
-      <WhiteSpace />
+    <div className="graph-container" style={{ backgroundColor: '#fff' }}>
       <canvas id="booking-chart" style={{ width: '100%', height: 250 }} />
     </div>
   );
@@ -32,12 +31,8 @@ const printGraph = async () => {
         tickCount: 5,
         min: 0,
       },
-    });
-    chart.tooltip({
-      custom: true,
-      onChange: (obj: any) => {
-        const legend = chart.get('legendController').legends.top[0];
-        console.log(legend);
+      date: {
+        tickCount: 5,
       },
     });
     chart
